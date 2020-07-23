@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Enemy_Turret.gd" type="Script" id=1]
+[ext_resource path="res://characters/turret/base.png" type="Texture" id=2]
+[ext_resource path="res://characters/turret/1.png" type="Texture" id=3]
+[ext_resource path="res://effects/explosion.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 16.0312
+
+[node name="Enemy_Turret" type="KinematicBody2D"]
+position = Vector2( -5, 0 )
+script = ExtResource( 1 )
+
+[node name="Body" type="Sprite" parent="."]
+position = Vector2( 5, 0 )
+rotation = -1.5708
+texture = ExtResource( 2 )
+
+[node name="Gun" type="Sprite" parent="."]
+position = Vector2( 5, 0 )
+rotation = 1.5708
+texture = ExtResource( 3 )
+
+[node name="FirePoint" type="Node2D" parent="."]
+position = Vector2( 40, -17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 5, 0 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 3, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 2, 0 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 4, 0 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 4 )
+offset = Vector2( -0.5, 0 )
+hframes = 7
+frame = 2
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

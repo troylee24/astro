@@ -1,0 +1,155 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://fonts/font-2-export.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=25]
+[ext_resource path="res://background/space.jpg" type="Texture" id=28]
+[ext_resource path="res://World.gd" type="Script" id=31]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade_transition"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Label:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 85.5, 129 ), Vector2( 0, 114 ), Vector2( 0, 114 ), Vector2( 85.5, 129 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Label:rect_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 341, 42 ), Vector2( 341, 42 ), Vector2( 341, 42 ), Vector2( 341, 42 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="World" type="Node2D"]
+script = ExtResource( 31 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 512.0
+margin_bottom = 300.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUD" parent="." instance=ExtResource( 25 )]
+
+[node name="TimerLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_right = 512.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 2 )
+text = "60"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 256, 150 )
+
+[node name="RoundTimer" type="Timer" parent="."]
+
+[node name="SpawnTimers" type="Node" parent="."]
+
+[node name="MechTimer" type="Timer" parent="SpawnTimers"]
+
+[node name="TurretTimer" type="Timer" parent="SpawnTimers"]
+
+[node name="RoundDisplay" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Round" type="Control" parent="RoundDisplay"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="ColorRect" parent="RoundDisplay/Round"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="RoundDisplay/Round"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -170.5
+margin_top = -21.0
+margin_right = 170.5
+margin_bottom = 21.0
+custom_fonts/font = ExtResource( 2 )
+text = "round 1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RoundDisplay/Round"]
+anims/fade_transition = SubResource( 1 )
+[connection signal="timeout" from="RoundTimer" to="." method="_on_RoundTimer_timeout"]
+[connection signal="timeout" from="SpawnTimers/MechTimer" to="." method="_on_MechTimer_timeout"]
+[connection signal="timeout" from="SpawnTimers/TurretTimer" to="." method="_on_TurretTimer_timeout"]
+[connection signal="animation_finished" from="RoundDisplay/Round/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

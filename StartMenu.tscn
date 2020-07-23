@@ -1,0 +1,1316 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://MenuButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://fonts/font-2-export.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://StartMenu.gd" type="Script" id=3]
+[ext_resource path="res://fonts/font-1-export.fnt" type="BitmapFont" id=4]
+[ext_resource path="res://fonts/C&C Red Alert [INET].ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://weapons/1.png" type="Texture" id=6]
+[ext_resource path="res://weapons/4.png" type="Texture" id=7]
+[ext_resource path="res://background/space.jpg" type="Texture" id=8]
+[ext_resource path="res://weapons/2.png" type="Texture" id=9]
+[ext_resource path="res://weapons/3.png" type="Texture" id=10]
+[ext_resource path="res://weapons/5.png" type="Texture" id=11]
+[ext_resource path="res://weapons/6.png" type="Texture" id=12]
+[ext_resource path="res://weapons/7.png" type="Texture" id=13]
+[ext_resource path="res://weapons/8.png" type="Texture" id=14]
+[ext_resource path="res://weapons/9.png" type="Texture" id=15]
+[ext_resource path="res://weapons/12.png" type="Texture" id=16]
+[ext_resource path="res://weapons/10.png" type="Texture" id=17]
+[ext_resource path="res://weapons/11.png" type="Texture" id=18]
+[ext_resource path="res://GUN STATS Layer.gd" type="Script" id=19]
+[ext_resource path="res://Stats.tscn" type="PackedScene" id=20]
+[ext_resource path="res://weapons/attach-to-body/all.png" type="Texture" id=21]
+[ext_resource path="res://characters/head/2.png" type="Texture" id=22]
+[ext_resource path="res://characters/body/1.png" type="Texture" id=23]
+[ext_resource path="res://hud/arrow.png" type="Texture" id=24]
+[ext_resource path="res://CHARACTER SELECT Layer.gd" type="Script" id=25]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 0, 300, 1 )
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 12
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 12
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 8
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 12
+font_data = ExtResource( 5 )
+
+[node name="StartMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = -150.0
+margin_right = 256.0
+margin_bottom = 150.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 256, 0 )
+rotation = 1.5708
+emitting = false
+amount = 150
+lifetime = 10.0
+process_material = SubResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_top = 12.0
+margin_right = -60.0
+margin_bottom = -56.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 392.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 2 )
+text = "astro"
+align = 1
+valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 62.0
+margin_right = 392.0
+margin_bottom = 208.0
+custom_constants/margin_left = 40
+
+[node name="Buttons" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+margin_left = 40.0
+margin_right = 392.0
+margin_bottom = 146.0
+
+[node name="StartButton" parent="VBoxContainer/MarginContainer/Buttons" instance=ExtResource( 1 )]
+margin_right = 352.0
+margin_bottom = 26.0
+next_scene = "res://LoadoutMenu.tscn"
+gun_num = "1"
+text = "START"
+
+[node name="SelectButton" parent="VBoxContainer/MarginContainer/Buttons" instance=ExtResource( 1 )]
+margin_top = 30.0
+margin_right = 352.0
+margin_bottom = 56.0
+next_scene = "none"
+gun_num = "2"
+text = "CHARACTER SELECT"
+
+[node name="ControlsButton" parent="VBoxContainer/MarginContainer/Buttons" instance=ExtResource( 1 )]
+margin_top = 60.0
+margin_right = 352.0
+margin_bottom = 86.0
+next_scene = "none"
+gun_num = "6"
+text = "CONTROLS"
+
+[node name="TipsButton" parent="VBoxContainer/MarginContainer/Buttons" instance=ExtResource( 1 )]
+margin_top = 90.0
+margin_right = 352.0
+margin_bottom = 116.0
+next_scene = "none"
+gun_num = "8"
+text = "TIPS"
+
+[node name="StatsButton" parent="VBoxContainer/MarginContainer/Buttons" instance=ExtResource( 1 )]
+margin_top = 120.0
+margin_right = 352.0
+margin_bottom = 146.0
+next_scene = "none"
+gun_num = "12"
+text = "GUN STATS"
+
+[node name="CHARACTER SELECT Layer" type="CanvasLayer" parent="."]
+script = ExtResource( 25 )
+
+[node name="Control" type="Control" parent="CHARACTER SELECT Layer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="TextureRect" parent="CHARACTER SELECT Layer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CHARACTER SELECT Layer/Control"]
+margin_left = 50.0
+margin_top = 12.0
+margin_right = 462.0
+margin_bottom = 246.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CHARACTER SELECT Layer/Control/VBoxContainer"]
+margin_right = 412.0
+margin_bottom = 62.0
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CHARACTER SELECT Layer/Control/VBoxContainer/MarginContainer"]
+margin_right = 412.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 2 )
+text = "character"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CHARACTER SELECT Layer/Control/VBoxContainer"]
+margin_top = 66.0
+margin_right = 412.0
+margin_bottom = 234.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer"]
+margin_right = 412.0
+margin_bottom = 143.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Player" type="Control" parent="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -22.5
+margin_right = 5.0
+margin_bottom = -22.5
+rect_rotation = 90.0
+rect_scale = Vector2( 5, 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Body" type="Sprite" parent="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/Player"]
+position = Vector2( 1, 0 )
+rotation = -1.5708
+texture = ExtResource( 23 )
+
+[node name="Gun" type="Sprite" parent="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/Player"]
+position = Vector2( 13, 2 )
+rotation = -1.5708
+texture = ExtResource( 21 )
+hframes = 12
+
+[node name="Head" type="Sprite" parent="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/Player"]
+position = Vector2( -4, 0 )
+rotation = -1.5708
+texture = ExtResource( 22 )
+
+[node name="ColorRect" type="ColorRect" parent="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/Player"]
+margin_left = 7.27431
+margin_top = -6.55178
+margin_right = 8.27431
+margin_bottom = 0.448218
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/Player"]
+margin_left = 8.0
+margin_top = -5.0
+margin_right = 9.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/Player"]
+margin_left = 7.0
+margin_top = 5.0
+margin_right = 9.0
+margin_bottom = 8.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeadLeft" type="TextureButton" parent="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control"]
+anchor_left = 0.5
+anchor_top = 0.388
+anchor_right = 0.5
+anchor_bottom = 0.388
+margin_left = -97.0
+margin_top = -51.484
+margin_right = -65.0
+margin_bottom = -25.484
+rect_rotation = 90.0
+texture_normal = ExtResource( 24 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeadRight" type="TextureButton" parent="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control"]
+anchor_left = 0.5
+anchor_top = 0.388
+anchor_right = 0.5
+anchor_bottom = 0.388
+margin_left = 96.0
+margin_top = -19.484
+margin_right = 128.0
+margin_bottom = 6.516
+rect_rotation = 270.0
+texture_normal = ExtResource( 24 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BodyLeft" type="TextureButton" parent="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control"]
+anchor_left = 0.5
+anchor_top = 0.388
+anchor_right = 0.5
+anchor_bottom = 0.388
+margin_left = -96.0
+margin_top = -30.484
+margin_right = -23.0
+margin_bottom = 19.516
+rect_rotation = 90.0
+texture_normal = ExtResource( 24 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BodyRight" type="TextureButton" parent="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control"]
+anchor_left = 0.5
+anchor_top = 0.388
+anchor_right = 0.5
+anchor_bottom = 0.388
+margin_left = 96.0
+margin_top = 42.516
+margin_right = 169.0
+margin_bottom = 92.516
+rect_rotation = 270.0
+texture_normal = ExtResource( 24 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer"]
+margin_left = 178.0
+margin_top = 147.0
+margin_right = 234.0
+margin_bottom = 168.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 4 )
+text = "BACK"
+
+[node name="CONTROLS Layer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CONTROLS Layer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="TextureRect" parent="CONTROLS Layer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CONTROLS Layer/Control"]
+margin_left = 50.0
+margin_top = 12.0
+margin_right = 462.0
+margin_bottom = 246.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CONTROLS Layer/Control/VBoxContainer"]
+margin_right = 412.0
+margin_bottom = 62.0
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CONTROLS Layer/Control/VBoxContainer/MarginContainer"]
+margin_right = 412.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 2 )
+text = "controls"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CONTROLS Layer/Control/VBoxContainer"]
+margin_top = 66.0
+margin_right = 412.0
+margin_bottom = 234.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CONTROLS Layer/Control/VBoxContainer/VBoxContainer"]
+margin_right = 412.0
+margin_bottom = 143.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 2 )
+text = "Move: use the [WASD] keys for up, left, down, and right respectively
+
+Shoot: hold down the [left-mouse-button]
+
+Change Gun: use [1,2,3,4] for getting the gun from a specific slot OR click the [right-mouse-button] to change once to the right (i.e. 1->2, 2->3, 3->4, 4->1)
+
+Pause: [ESC] will bring up the pause menu"
+
+[node name="BackButton" type="Button" parent="CONTROLS Layer/Control/VBoxContainer/VBoxContainer"]
+margin_left = 178.0
+margin_top = 147.0
+margin_right = 234.0
+margin_bottom = 168.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 4 )
+text = "BACK"
+
+[node name="TIPS Layer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="TIPS Layer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="TextureRect" parent="TIPS Layer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TIPS Layer/Control"]
+margin_left = 50.0
+margin_top = 12.0
+margin_right = 462.0
+margin_bottom = 246.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="TIPS Layer/Control/VBoxContainer"]
+margin_right = 412.0
+margin_bottom = 62.0
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TIPS Layer/Control/VBoxContainer/MarginContainer"]
+margin_right = 412.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 2 )
+text = "tips"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TIPS Layer/Control/VBoxContainer"]
+margin_top = 66.0
+margin_right = 412.0
+margin_bottom = 234.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TIPS Layer/Control/VBoxContainer/VBoxContainer"]
+margin_right = 412.0
+margin_bottom = 143.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 2 )
+text = "Tip #0. There are five rounds of 30 seconds each. After the end of a round, health will be replenished by 4 bars. Your gun loadout will also be randomized to a different set of four guns.
+
+Tip #1. All enemies will spawn along the edges of the screen. Turrets have slower spawn times than Robots. Each successive round will increase the spawn rates.
+
+Tip #2. Bullets can hit bullets. Area of Effect damage will NOT be applied to enemies if a player's bullet hits an enemy's bullet.
+
+Tip #3. All you have to do is survive. Technically, you do not need to kill a single enemy in order to complete a round."
+
+[node name="BackButton" type="Button" parent="TIPS Layer/Control/VBoxContainer/VBoxContainer"]
+margin_left = 178.0
+margin_top = 147.0
+margin_right = 234.0
+margin_bottom = 168.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 4 )
+text = "BACK"
+
+[node name="GUN STATS Layer" type="CanvasLayer" parent="."]
+script = ExtResource( 19 )
+
+[node name="Control" type="Control" parent="GUN STATS Layer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="TextureRect" parent="GUN STATS Layer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUN STATS Layer/Control"]
+margin_left = 50.0
+margin_top = 12.0
+margin_right = 462.0
+margin_bottom = 246.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="GUN STATS Layer/Control/VBoxContainer"]
+margin_right = 412.0
+margin_bottom = 68.0
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/MarginContainer"]
+margin_right = 412.0
+margin_bottom = 58.0
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Control/VBoxContainer/MarginContainer/VBoxContainer2"]
+margin_right = 412.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 2 )
+text = "gun stats"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="Label2" type="Label" parent="GUN STATS Layer/Control/VBoxContainer/MarginContainer/VBoxContainer2"]
+margin_top = 46.0
+margin_right = 412.0
+margin_bottom = 58.0
+custom_fonts/font = SubResource( 3 )
+text = "[click to toggle stats view]"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer"]
+margin_top = 72.0
+margin_right = 412.0
+margin_bottom = 199.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Row1" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer"]
+margin_right = 412.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row1"]
+margin_right = 412.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row1/HBoxContainer"]
+margin_right = 100.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureButton" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row1/HBoxContainer/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 6 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row1/HBoxContainer/VBoxContainer"]
+margin_left = 40.0
+margin_top = 27.0
+margin_right = 59.0
+margin_bottom = 39.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 4 )
+text = "SMG"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row1/HBoxContainer"]
+margin_left = 104.0
+margin_right = 204.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureButton" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row1/HBoxContainer/VBoxContainer2"]
+margin_right = 100.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row1/HBoxContainer/VBoxContainer2"]
+margin_left = 22.0
+margin_top = 27.0
+margin_right = 77.0
+margin_bottom = 39.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 4 )
+text = "Megaphone"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row1/HBoxContainer"]
+margin_left = 208.0
+margin_right = 308.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureButton" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row1/HBoxContainer/VBoxContainer3"]
+margin_right = 100.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 10 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row1/HBoxContainer/VBoxContainer3"]
+margin_left = 37.0
+margin_top = 27.0
+margin_right = 63.0
+margin_bottom = 39.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 4 )
+text = "Pistol"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row1/HBoxContainer"]
+margin_left = 312.0
+margin_right = 412.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureButton" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row1/HBoxContainer/VBoxContainer4"]
+margin_right = 100.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row1/HBoxContainer/VBoxContainer4"]
+margin_left = 41.0
+margin_top = 27.0
+margin_right = 59.0
+margin_bottom = 39.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 4 )
+text = "RPG"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Row2" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer"]
+margin_top = 43.0
+margin_right = 412.0
+margin_bottom = 82.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row2"]
+margin_right = 412.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row2/HBoxContainer"]
+margin_right = 100.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureButton" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row2/HBoxContainer/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 11 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row2/HBoxContainer/VBoxContainer"]
+margin_left = 34.0
+margin_top = 27.0
+margin_right = 65.0
+margin_bottom = 39.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 4 )
+text = "Sword"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row2/HBoxContainer"]
+margin_left = 104.0
+margin_right = 204.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureButton" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row2/HBoxContainer/VBoxContainer2"]
+margin_right = 100.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row2/HBoxContainer/VBoxContainer2"]
+margin_left = 32.0
+margin_top = 27.0
+margin_right = 68.0
+margin_bottom = 39.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 4 )
+text = "Blaster"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row2/HBoxContainer"]
+margin_left = 208.0
+margin_right = 308.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureButton" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row2/HBoxContainer/VBoxContainer3"]
+margin_right = 100.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 13 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row2/HBoxContainer/VBoxContainer3"]
+margin_left = 36.0
+margin_top = 27.0
+margin_right = 64.0
+margin_bottom = 39.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 4 )
+text = "Ghost"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row2/HBoxContainer"]
+margin_left = 312.0
+margin_right = 412.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureButton" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row2/HBoxContainer/VBoxContainer4"]
+margin_right = 100.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 14 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row2/HBoxContainer/VBoxContainer4"]
+margin_left = 19.0
+margin_top = 27.0
+margin_right = 80.0
+margin_bottom = 39.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 4 )
+text = "Machine Gun"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Row3" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer"]
+margin_top = 86.0
+margin_right = 412.0
+margin_bottom = 127.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row3"]
+margin_right = 412.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row3/HBoxContainer"]
+margin_right = 100.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureButton" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row3/HBoxContainer/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 15 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row3/HBoxContainer/VBoxContainer"]
+margin_left = 16.0
+margin_top = 29.0
+margin_right = 83.0
+margin_bottom = 41.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 4 )
+text = "Flamethrower"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row3/HBoxContainer"]
+margin_left = 104.0
+margin_right = 204.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureButton" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row3/HBoxContainer/VBoxContainer2"]
+margin_right = 100.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 17 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row3/HBoxContainer/VBoxContainer2"]
+margin_left = 21.0
+margin_top = 29.0
+margin_right = 78.0
+margin_bottom = 41.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 4 )
+text = "Energy Gun"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row3/HBoxContainer"]
+margin_left = 208.0
+margin_right = 308.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureButton" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row3/HBoxContainer/VBoxContainer3"]
+margin_right = 100.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 18 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row3/HBoxContainer/VBoxContainer3"]
+margin_left = 34.0
+margin_top = 29.0
+margin_right = 66.0
+margin_bottom = 41.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 4 )
+text = "Sniper"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row3/HBoxContainer"]
+margin_left = 312.0
+margin_right = 412.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureButton" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row3/HBoxContainer/VBoxContainer4"]
+margin_right = 100.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 16 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Control/VBoxContainer/VBoxContainer/Row3/HBoxContainer/VBoxContainer4"]
+margin_left = 19.0
+margin_top = 29.0
+margin_right = 81.0
+margin_bottom = 41.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 4 )
+text = "Golden Glove"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="GUN STATS Layer/Control/VBoxContainer"]
+margin_top = 203.0
+margin_right = 412.0
+margin_bottom = 234.0
+custom_constants/margin_top = 10
+
+[node name="BackButton" type="Button" parent="GUN STATS Layer/Control/VBoxContainer/MarginContainer2"]
+margin_left = 178.0
+margin_top = 10.0
+margin_right = 234.0
+margin_bottom = 31.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 4 )
+text = "BACK"
+
+[node name="Stats" type="CanvasLayer" parent="GUN STATS Layer"]
+layer = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUN STATS Layer/Stats"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GUN STATS Layer/Stats"]
+visible = false
+margin_left = 50.0
+margin_top = 12.0
+margin_right = 462.0
+margin_bottom = 218.0
+custom_constants/separation = -5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="GUN STATS Layer/Stats/VBoxContainer2"]
+margin_right = 412.0
+margin_bottom = 68.0
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GUN STATS Layer/Stats/VBoxContainer2/MarginContainer"]
+margin_right = 412.0
+margin_bottom = 58.0
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Stats/VBoxContainer2/MarginContainer/VBoxContainer2"]
+margin_right = 412.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 2 )
+text = "gun stats"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="Label2" type="Label" parent="GUN STATS Layer/Stats/VBoxContainer2/MarginContainer/VBoxContainer2"]
+margin_top = 46.0
+margin_right = 412.0
+margin_bottom = 58.0
+custom_fonts/font = SubResource( 3 )
+text = "[click to go back]"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="Row1" type="VBoxContainer" parent="GUN STATS Layer/Stats/VBoxContainer2"]
+margin_top = 63.0
+margin_right = 412.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUN STATS Layer/Stats/VBoxContainer2/Row1"]
+margin_right = 412.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="1" parent="GUN STATS Layer/Stats/VBoxContainer2/Row1/HBoxContainer" instance=ExtResource( 20 )]
+margin_bottom = 51.0
+fire_rate = 95
+bullet_speed = 60
+damage = 12
+text = "SMG"
+
+[node name="2" parent="GUN STATS Layer/Stats/VBoxContainer2/Row1/HBoxContainer" instance=ExtResource( 20 )]
+margin_left = 104.0
+margin_right = 204.0
+margin_bottom = 51.0
+fire_rate = 96
+bullet_speed = 50
+damage = 10
+text = "Megaphone"
+
+[node name="3" parent="GUN STATS Layer/Stats/VBoxContainer2/Row1/HBoxContainer" instance=ExtResource( 20 )]
+margin_left = 208.0
+margin_right = 308.0
+margin_bottom = 51.0
+fire_rate = 80
+bullet_speed = 10
+damage = 35
+text = "Pistol"
+
+[node name="4" parent="GUN STATS Layer/Stats/VBoxContainer2/Row1/HBoxContainer" instance=ExtResource( 20 )]
+margin_left = 312.0
+margin_right = 412.0
+margin_bottom = 51.0
+fire_rate = 20
+bullet_speed = 70
+damage = 100
+text = "Rocket"
+
+[node name="Row2" type="VBoxContainer" parent="GUN STATS Layer/Stats/VBoxContainer2"]
+margin_top = 109.0
+margin_right = 412.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUN STATS Layer/Stats/VBoxContainer2/Row2"]
+margin_right = 412.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="1" parent="GUN STATS Layer/Stats/VBoxContainer2/Row2/HBoxContainer" instance=ExtResource( 20 )]
+margin_bottom = 51.0
+fire_rate = 92
+bullet_speed = 80
+damage = 15
+text = "Sword"
+
+[node name="2" parent="GUN STATS Layer/Stats/VBoxContainer2/Row2/HBoxContainer" instance=ExtResource( 20 )]
+margin_left = 104.0
+margin_right = 204.0
+margin_bottom = 51.0
+fire_rate = 97
+bullet_speed = 65
+damage = 10
+text = "Blaster"
+
+[node name="3" parent="GUN STATS Layer/Stats/VBoxContainer2/Row2/HBoxContainer" instance=ExtResource( 20 )]
+margin_left = 208.0
+margin_right = 308.0
+margin_bottom = 51.0
+fire_rate = 70
+bullet_speed = 90
+damage = 40
+text = "Ghost"
+
+[node name="4" parent="GUN STATS Layer/Stats/VBoxContainer2/Row2/HBoxContainer" instance=ExtResource( 20 )]
+margin_left = 312.0
+margin_right = 412.0
+margin_bottom = 51.0
+fire_rate = 97
+bullet_speed = 80
+damage = 8
+text = "Machine Gun"
+
+[node name="Row3" type="VBoxContainer" parent="GUN STATS Layer/Stats/VBoxContainer2"]
+margin_top = 155.0
+margin_right = 412.0
+margin_bottom = 206.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUN STATS Layer/Stats/VBoxContainer2/Row3"]
+margin_right = 412.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="1" parent="GUN STATS Layer/Stats/VBoxContainer2/Row3/HBoxContainer" instance=ExtResource( 20 )]
+margin_bottom = 51.0
+fire_rate = 97
+bullet_speed = 40
+damage = 7
+text = "Flamethrower"
+
+[node name="2" parent="GUN STATS Layer/Stats/VBoxContainer2/Row3/HBoxContainer" instance=ExtResource( 20 )]
+margin_left = 104.0
+margin_right = 204.0
+margin_bottom = 51.0
+fire_rate = 85
+bullet_speed = 70
+damage = 25
+text = "Energy Gun"
+
+[node name="3" parent="GUN STATS Layer/Stats/VBoxContainer2/Row3/HBoxContainer" instance=ExtResource( 20 )]
+margin_left = 208.0
+margin_right = 308.0
+margin_bottom = 51.0
+bullet_speed = 100
+damage = 100
+text = "Sniper"
+
+[node name="4" parent="GUN STATS Layer/Stats/VBoxContainer2/Row3/HBoxContainer" instance=ExtResource( 20 )]
+margin_left = 312.0
+margin_right = 412.0
+margin_bottom = 51.0
+fire_rate = 35
+bullet_speed = 90
+damage = 75
+text = "Golden Glove"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUN STATS Layer/Stats"]
+visible = false
+margin_left = 12.0
+margin_top = 11.0
+margin_right = 77.0
+margin_bottom = 67.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUN STATS Layer/Stats/VBoxContainer"]
+margin_right = 65.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 5 )
+text = "Fire-rate"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="GUN STATS Layer/Stats/VBoxContainer"]
+margin_top = 12.0
+margin_right = 65.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 0.984314, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="GUN STATS Layer/Stats/VBoxContainer"]
+margin_top = 20.0
+margin_right = 65.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 5 )
+text = "Bullet Speed"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="GUN STATS Layer/Stats/VBoxContainer"]
+margin_top = 32.0
+margin_right = 65.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 0.560784, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="GUN STATS Layer/Stats/VBoxContainer"]
+margin_top = 40.0
+margin_right = 65.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 5 )
+text = "Damage"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="GUN STATS Layer/Stats/VBoxContainer"]
+margin_top = 52.0
+margin_right = 65.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="GUN STATS Layer/Stats"]
+visible = false
+margin_left = 49.0
+margin_top = 79.0
+margin_right = 462.0
+margin_bottom = 214.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 155.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 6 )
+text = "MADE BY:
+https://and-one.itch.io/"
+[connection signal="mouse_entered" from="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/HeadLeft" to="CHARACTER SELECT Layer" method="_on_HeadLeft_mouse_entered"]
+[connection signal="mouse_exited" from="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/HeadLeft" to="CHARACTER SELECT Layer" method="_on_HeadLeft_mouse_exited"]
+[connection signal="pressed" from="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/HeadLeft" to="CHARACTER SELECT Layer" method="_on_HeadLeft_pressed"]
+[connection signal="mouse_entered" from="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/HeadRight" to="CHARACTER SELECT Layer" method="_on_HeadRight_mouse_entered"]
+[connection signal="mouse_exited" from="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/HeadRight" to="CHARACTER SELECT Layer" method="_on_HeadRight_mouse_exited"]
+[connection signal="pressed" from="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/HeadRight" to="CHARACTER SELECT Layer" method="_on_HeadRight_pressed"]
+[connection signal="mouse_entered" from="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/BodyLeft" to="CHARACTER SELECT Layer" method="_on_BodyLeft_mouse_entered"]
+[connection signal="mouse_exited" from="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/BodyLeft" to="CHARACTER SELECT Layer" method="_on_BodyLeft_mouse_exited"]
+[connection signal="pressed" from="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/BodyLeft" to="CHARACTER SELECT Layer" method="_on_BodyLeft_pressed"]
+[connection signal="mouse_entered" from="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/BodyRight" to="CHARACTER SELECT Layer" method="_on_BodyRight_mouse_entered"]
+[connection signal="mouse_exited" from="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/BodyRight" to="CHARACTER SELECT Layer" method="_on_BodyRight_mouse_exited"]
+[connection signal="pressed" from="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/Control/BodyRight" to="CHARACTER SELECT Layer" method="_on_BodyRight_pressed"]
+[connection signal="pressed" from="CHARACTER SELECT Layer/Control/VBoxContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="CONTROLS Layer/Control/VBoxContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="TIPS Layer/Control/VBoxContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="GUN STATS Layer/Control/VBoxContainer/MarginContainer2/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="GUN STATS Layer/Stats/TextureButton" to="GUN STATS Layer" method="_on_TextureButton_pressed"]

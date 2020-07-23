@@ -1,0 +1,133 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://weapons/shoot/bullets.png" type="Texture" id=1]
+[ext_resource path="res://Enemy_Bullet.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 7.15252
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 8.80247
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 5.84508
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 7.14821
+height = 7.96089
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 8.92262
+height = 15.9032
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 6.13326
+height = 5.30622
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 10.5788
+
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 3.96798
+height = 5.12193
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 10.8063
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 8.31674
+
+[sub_resource type="CapsuleShape2D" id=11]
+radius = 5.304
+height = 22.6285
+
+[sub_resource type="CapsuleShape2D" id=12]
+radius = 11.1907
+height = 7.3429
+
+[node name="Enemy_Bullet" type="RigidBody2D"]
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 12
+
+[node name="Collision0" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0.0314751, 0.565617 )
+shape = SubResource( 1 )
+
+[node name="Collision1" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 1.43782, 0.17766 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="Collision2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0.516422, 0.129166 )
+shape = SubResource( 3 )
+disabled = true
+
+[node name="Collision3" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 1.72879, -0.404276 )
+rotation = 1.5708
+shape = SubResource( 4 )
+disabled = true
+
+[node name="Collision4" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 3.7824, 0.506078 )
+shape = SubResource( 5 )
+disabled = true
+
+[node name="Collision5" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -0.106731, -0.586129 )
+rotation = 1.5708
+shape = SubResource( 6 )
+disabled = true
+
+[node name="Collision6" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 3.73646, -0.540059 )
+shape = SubResource( 7 )
+disabled = true
+
+[node name="Collision7" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0.123619, -0.401849 )
+rotation = 1.5708
+shape = SubResource( 8 )
+disabled = true
+
+[node name="Collision8" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -0.371029, -0.908618 )
+shape = SubResource( 9 )
+disabled = true
+
+[node name="Collision9" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -0.014595, -0.493989 )
+shape = SubResource( 10 )
+disabled = true
+
+[node name="Collision10" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 5.88234, -0.171499 )
+rotation = 1.5708
+shape = SubResource( 11 )
+disabled = true
+
+[node name="Collision11" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 1.60326, 0.023 )
+rotation = 1.5708
+shape = SubResource( 12 )
+disabled = true
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]

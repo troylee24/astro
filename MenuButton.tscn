@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://hud/gun_slot.png" type="Texture" id=1]
+[ext_resource path="res://weapons/1.png" type="Texture" id=3]
+[ext_resource path="res://MenuButton.gd" type="Script" id=4]
+[ext_resource path="res://fonts/font-1-export.fnt" type="BitmapFont" id=5]
+
+[node name="Button" type="TextureButton"]
+action_mode = 0
+texture_normal = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 23, 13 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 98.0
+margin_top = 4.0
+margin_right = 153.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 5 )
+text = "START"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="." to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_Button_pressed"]
