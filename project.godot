@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="Astro"
 run/main_scene="res://StartMenu.tscn"
+config/icon="res://Profile Pic.png"
 
 [autoload]
 
